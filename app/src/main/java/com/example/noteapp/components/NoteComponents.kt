@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.noteapp.model.Note
+import com.example.noteapp.utils.formatDate
 import org.w3c.dom.Text
 import java.time.format.DateTimeFormatter
 
@@ -94,8 +95,8 @@ fun NoteView(note : Note =  Note(
             .clickable {
 
                 onNoteClicked(note)
-//            Toast.makeText(context, "Note${note.id} is clicked", Toast.LENGTH_SHORT)
-//                            .show()
+            Toast.makeText(context, "Note${note.id} is clicked", Toast.LENGTH_SHORT)
+                            .show()
             }
             ,
         elevation = CardDefaults.cardElevation(4.dp)
@@ -105,7 +106,7 @@ fun NoteView(note : Note =  Note(
             Spacer(modifier = Modifier.height(5.dp))
             Text(text = note.description, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium)
             Spacer(modifier = Modifier.height(5.dp))
-      //      Text(text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, dd, MMM")))
+            Text(text = note.entryDate.time.let { formatDate(it) })
 
 
         }
